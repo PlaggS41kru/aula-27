@@ -4,20 +4,23 @@ const server = express();
 const pessoas = [{nome: "Rô"}, {nome: "Zé"}];
 
 server.get("/", (_requst, response) => {
-  response.status(200).end("Olá mundo")
+  response.status(200).end("Olá mundo");
 });
 
 server.get("/ping", (_request, response) => {
-  response.status(200).end("pong")
+  response.status(200).end("pong");
 });
 
   // porta que retorna todas as pessoas do objeto
+server.get("/pessoas", (_request, response) => {
+  response.status(200).json(pessoas);
+});
 
   // porta que retorna uma pessoa em específico
 
-  server.use((_request, response) => {
-    response.status(404).send("Rota não encontrada");
-  })
+server.use((_request, response) => {
+  response.status(404).send("Rota não encontrada");
+});
 
 server.listen(3000, () => console.log ("Servidor rodando!"));
 
